@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150.0
+var speed = 70.0
 var mode = "WAIT"
 var push_force = 20
 
@@ -11,11 +11,6 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			$AnimatedSprite2D.flip_h = true
 		move_and_slide()
-	#for i in get_slide_collision_count():
-		#var c = get_slide_collision(i)
-		#if c.get_collider() is RigidBody2D:
-			#c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-
 
 func die():
 	mode = "DIE"
