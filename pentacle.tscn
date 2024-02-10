@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1hihlokpx00l"]
+
+[ext_resource type="Script" path="res://pentacle.gd" id="1_blbow"]
+[ext_resource type="Texture2D" uid="uid://crl6amd5f8qjt" path="res://sprites/pentacle-sheet.png" id="1_isc7j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47l8k"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp6b5"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swtvm"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywqhs"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh4al"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilmrn"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xne1c"]
+atlas = ExtResource("1_isc7j")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4yvw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47l8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp6b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swtvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywqhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh4al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilmrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xne1c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5neld"]
+radius = 16.0
+
+[node name="Pentacle" type="Area2D"]
+script = ExtResource("1_blbow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f4yvw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5neld")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

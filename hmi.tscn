@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://eosn3f5t4ujm"]
+
+[ext_resource type="Theme" uid="uid://d16pfv2sredv" path="res://theme_texte.tres" id="1_kmj5e"]
+
+[node name="HMI" type="Node2D"]
+
+[node name="Tick" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 164.0
+offset_bottom = 77.0
+theme = ExtResource("1_kmj5e")
+text = "1"
+
+[node name="Message" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 131.0
+offset_right = 231.0
+offset_bottom = 162.0
+scale = Vector2(3.40267, 5.50198)
+theme = ExtResource("1_kmj5e")
+text = "Coucou"
+horizontal_alignment = 1
+vertical_alignment = 1
