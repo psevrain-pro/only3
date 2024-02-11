@@ -21,6 +21,7 @@ AudioManager="*res://AudioManager.gd"
 
 [display]
 
+window/stretch/mode="canvas_items"
 window/stretch/scale=2.0
 
 [rendering]

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c1hihlokpx00l" path="res://pentacle.tscn" id="4_2qfdu"]
 [ext_resource type="PackedScene" uid="uid://cb473f6qv6b58" path="res://slime.tscn" id="4_how7p"]
 [ext_resource type="PackedScene" uid="uid://eosn3f5t4ujm" path="res://hmi.tscn" id="6_xad1x"]
-[ext_resource type="PackedScene" uid="uid://bnqvej06dimxr" path="res://brain.tscn" id="8_k1thk"]
+[ext_resource type="PackedScene" path="res://brain.tscn" id="8_k1thk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekdmr"]
 texture = ExtResource("1_dh4mk")
