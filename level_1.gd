@@ -17,6 +17,7 @@ func _ready():
 	mode = "PLAY"
 	initFlashRect()
 	AudioManager.play("res://sounds/start.mp3")
+	ring_bell()
 	$Timer.start()
 
 	
@@ -29,6 +30,7 @@ func _process(delta):
 	if mode=="PLAY" and $Timer.is_stopped() and safe==false:
 		tick = 0
 		$HMI/Tick.text = "?"
+		ring_bell()
 		$Timer.start()
 
 func fire():
@@ -70,12 +72,15 @@ func game_over():
 func _on_timer_timeout():
 	tick += 1
 	$HMI/Tick.text = str(tick)
-	if tick > 3:
+	if tick > 2:
 		fire()
 		tick = 0
-	else :
-		flash(Color.WHITE)
-		AudioManager.play("res://sounds/bell1.mp3")
+	else:
+		ring_bell()
+		
+func ring_bell():
+	flash(Color.WHITE)
+	AudioManager.play("res://sounds/bell1.mp3")
 
 func initFlashRect():
 	flashRect = ColorRect.new()

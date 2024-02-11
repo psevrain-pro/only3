@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://djdkxwyyr3ly5"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_jiiql"]
+[ext_resource type="Texture2D" uid="uid://ciia7ytt8a1kr" path="res://sprites/Door.png" id="2_irame"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gs46q"]
+size = Vector2(8, 31)
+
+[node name="Door" type="CharacterBody2D"]
+script = ExtResource("1_jiiql")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="CollisionShapeOpened" type="CollisionShape2D" parent="."]
+position = Vector2(16, 4)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_gs46q")
+
+[node name="CollisionShapeClosed" type="CollisionShape2D" parent="."]
+position = Vector2(5, 16)
+shape = SubResource("RectangleShape2D_gs46q")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_irame")
+centered = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
