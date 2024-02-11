@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2vtqkgtg35ay"]
+[gd_scene load_steps=12 format=3 uid="uid://dic1dryqasuac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_acian"]
 [ext_resource type="Texture2D" uid="uid://dnnaexujjlyef" path="res://sprites/Walls.png" id="2_8w0yq"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c1hihlokpx00l" path="res://pentacle.tscn" id="7_gm03m"]
 [ext_resource type="PackedScene" uid="uid://c453rdvuravjd" path="res://player.tscn" id="8_d1iqd"]
 [ext_resource type="PackedScene" uid="uid://eosn3f5t4ujm" path="res://hmi.tscn" id="9_2rikr"]
-[ext_resource type="PackedScene" uid="uid://ktn53vxvpi31" path="res://brain.tscn" id="10_up01q"]
+[ext_resource type="PackedScene" uid="uid://bnqvej06dimxr" path="res://brain.tscn" id="10_up01q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekdmr"]
 texture = ExtResource("2_8w0yq")
@@ -290,6 +290,7 @@ script = ExtResource("1_acian")
 next_scene = "level_1.tscn"
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(83, 97)
 tile_set = SubResource("TileSet_jpvlk")
 format = 2
 layer_0/name = "walls"
@@ -299,6 +300,7 @@ layer_1/name = "floor"
 layer_1/tile_data = PackedInt32Array(131074, 65537, 0, 131075, 65537, 0, 131076, 65537, 0, 131077, 65537, 0, 131078, 65537, 0, 131079, 65537, 0, 131080, 65537, 0, 131081, 65537, 0, 131082, 65537, 0, 131083, 65537, 0, 131084, 65537, 0, 131085, 65537, 0, 131086, 65537, 0, 196611, 65537, 0, 196612, 1, 0, 196613, 65537, 0, 262149, 65537, 1, 262148, 65537, 0, 327686, 65537, 0, 327687, 1, 1, 327688, 65537, 0, 327689, 65537, 0, 393225, 65537, 0, 393226, 65537, 0, 196614, 65537, 0, 262151, 65537, 0, 262152, 65537, 0, 262153, 65537, 0, 327690, 65537, 0, 327691, 65537, 1, 393228, 65537, 0, 393229, 65537, 0, 393230, 65537, 0, 458767, 65537, 0, 458768, 65537, 0, 262150, 65537, 0, 458754, 65537, 0, 458755, 1, 1, 458756, 65537, 0, 458757, 65537, 0, 458758, 65537, 0, 458759, 65537, 0, 458760, 65537, 0, 458761, 65537, 0, 458762, 65537, 0, 458763, 65537, 0, 458764, 65537, 0, 458765, 65537, 0, 458766, 65537, 0, 393232, 65537, 0, 327696, 65537, 0, 262160, 65537, 0, 196624, 65537, 0, 131088, 65537, 0, 131087, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 65537, 0, 393219, 65537, 0, 393220, 65537, 0, 393221, 65537, 0, 393222, 65537, 0, 393223, 65537, 0, 393224, 65537, 0, 393227, 65537, 0, 327694, 65537, 0, 327695, 65537, 0, 262159, 65537, 0, 196623, 65537, 0, 393231, 1, 0, 262158, 65537, 1, 196622, 65537, 0, 196621, 65537, 0, 196620, 65537, 0, 196619, 65537, 0, 196618, 65537, 0, 196617, 65537, 1, 196616, 65537, 0, 196615, 65537, 0, 262147, 65537, 0, 327683, 65537, 0, 327684, 65537, 0, 327685, 65537, 0, 327692, 65537, 0, 327693, 65537, 0, 262157, 65537, 0, 262156, 65537, 0, 262155, 65537, 0, 262154, 65537, 0)
 
 [node name="Mobs" type="Node2D" parent="."]
+position = Vector2(101, 133)
 
 [node name="Slime" parent="Mobs" instance=ExtResource("4_06vw4")]
 position = Vector2(145, 53)
@@ -306,11 +308,11 @@ position = Vector2(145, 53)
 [node name="Pentacles" type="Node" parent="."]
 
 [node name="Area2D3" parent="Pentacles" instance=ExtResource("7_gm03m")]
-position = Vector2(56, 76)
+position = Vector2(153, 176)
 
 [node name="Player" parent="." instance=ExtResource("8_d1iqd")]
 z_index = 10
-position = Vector2(56, 76)
+position = Vector2(155, 173)
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -319,6 +321,7 @@ visible = false
 z_index = 100
 
 [node name="Brain" parent="." instance=ExtResource("10_up01q")]
-position = Vector2(237, 78)
+position = Vector2(319, 176)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

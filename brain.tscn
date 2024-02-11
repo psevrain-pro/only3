@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ktn53vxvpi31"]
+[gd_scene load_steps=15 format=3 uid="uid://bnqvej06dimxr"]
 
 [ext_resource type="Script" path="res://brain.gd" id="1_1dbix"]
 [ext_resource type="Texture2D" uid="uid://b8ddycgtdvqab" path="res://sprites/Cerveau.png" id="1_e5niu"]
