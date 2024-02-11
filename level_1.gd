@@ -3,8 +3,8 @@ var tick = 0
 var safe = true
 var mode = "START"
 
-var bell_1 = preload("res://sounds/bell1.mp3")
-var bell_2 = preload("res://sounds/bell2.mp3")
+@export var next_scene: String =""
+
 var flashRect: ColorRect
 
 # Called when the node enters the scene tree for the first time.
@@ -46,8 +46,15 @@ func fire():
 
 func level_ok():
 	$Player.mode = "WAIT"
+	mode = "WAIT"
 	$Timer.stop()
-	AudioManager.play("res://sounds/level_ok.mp3")
+	AudioManager.play("res://sounds/fin_level.wav")
+	await get_tree().create_timer(2.0).timeout
+	if len(next_scene) == 0:
+		$HMI/Message.text = "You Win !!!"
+	else :
+		flash(Color.WHITE)
+		get_tree().change_scene_to_file(next_scene)
 
 func game_over():
 	mode = "WAIT"
