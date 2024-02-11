@@ -61,6 +61,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5neld"]
+radius = 16.0
 
 [node name="Pentacle" type="Area2D"]
 script = ExtResource("1_blbow")
@@ -71,4 +72,5 @@ sprite_frames = SubResource("SpriteFrames_f4yvw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5neld")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

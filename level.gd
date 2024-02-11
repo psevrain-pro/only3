@@ -10,6 +10,7 @@ var flashRect: ColorRect
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initFlashRect()
+	$HMI.show()
 	for cpt in range (3,0, -1):
 		$HMI/Message.text = str(cpt)
 		await get_tree().create_timer(0.7).timeout
@@ -18,8 +19,6 @@ func _ready():
 	mode = "PLAY"
 	
 	AudioManager.play("res://sounds/start.mp3")
-	ring_bell()
-	$Timer.start()
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,14 +37,13 @@ func fire():
 	#flash
 	AudioManager.play("res://sounds/flash.mp3")
 	AudioManager.play("res://sounds/bell2.mp3")
-	flash(Color.RED)
 	for p in $Pentacles.get_children():
 		p.fire()
 	if not safe:
+		flash(Color.RED)
 		game_over()
 	else :
-		$Timer.stop()
-		$HMI/Tick.text = "---"
+		pentacle_reached()
 
 func level_ok():
 	$Player.mode = "WAIT"
@@ -58,6 +56,11 @@ func level_ok():
 	else :
 		flash(Color.WHITE)
 		get_tree().change_scene_to_file(next_scene)
+
+func pentacle_reached():
+	flash(Color.LIME_GREEN)
+	$Timer.stop()
+	$HMI/Tick.text = "---"
 
 func game_over():
 	mode = "WAIT"
@@ -94,7 +97,7 @@ func flash(color: Color):
 	var tween = create_tween()
 	flashRect.show()
 	flashRect.color=color
-	flashRect.modulate.a = 0.75
+	flashRect.modulate.a = 0.50
 	tween.tween_property(flashRect, "modulate:a", 0.0, 0.25)
 	await tween.finished
 	flashRect.hide()

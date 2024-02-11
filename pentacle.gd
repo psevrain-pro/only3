@@ -11,3 +11,8 @@ func fire():
 func _on_animated_sprite_2d_animation_finished():
 	$AnimatedSprite2D.pause
 	$AnimatedSprite2D.frame = 0
+
+func _on_body_entered(body):
+	if body.has_method("whoami") and body.whoami() == "player":
+		fire()
+		get_parent().get_parent().pentacle_reached()

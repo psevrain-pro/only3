@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://crmpofuhxfmc5"]
+[gd_scene load_steps=14 format=3 uid="uid://bog2mhopg8x8r"]
 
-[ext_resource type="Texture2D" uid="uid://dnnaexujjlyef" path="res://sprites/Walls.png" id="1_dh4mk"]
-[ext_resource type="Script" path="res://level.gd" id="1_gvxiq"]
-[ext_resource type="Texture2D" uid="uid://cx1dd76itlipu" path="res://sprites/Floor.png" id="2_sbemy"]
-[ext_resource type="PackedScene" uid="uid://c453rdvuravjd" path="res://player.tscn" id="3_8pp0y"]
-[ext_resource type="PackedScene" uid="uid://c1hihlokpx00l" path="res://pentacle.tscn" id="4_2qfdu"]
-[ext_resource type="PackedScene" uid="uid://cb473f6qv6b58" path="res://slime.tscn" id="4_how7p"]
-[ext_resource type="PackedScene" uid="uid://eosn3f5t4ujm" path="res://hmi.tscn" id="6_xad1x"]
-[ext_resource type="PackedScene" uid="uid://ktn53vxvpi31" path="res://brain.tscn" id="8_k1thk"]
+[ext_resource type="Script" path="res://level.gd" id="1_83br0"]
+[ext_resource type="Texture2D" uid="uid://dnnaexujjlyef" path="res://sprites/Walls.png" id="2_2a45s"]
+[ext_resource type="Texture2D" uid="uid://cx1dd76itlipu" path="res://sprites/Floor.png" id="3_6rogy"]
+[ext_resource type="PackedScene" uid="uid://cb473f6qv6b58" path="res://slime.tscn" id="4_btuom"]
+[ext_resource type="PackedScene" uid="uid://d0o3qibfd8oyh" path="res://skeleton.tscn" id="5_8c8jk"]
+[ext_resource type="PackedScene" uid="uid://c1hihlokpx00l" path="res://pentacle.tscn" id="6_cr2n2"]
+[ext_resource type="PackedScene" uid="uid://c453rdvuravjd" path="res://player.tscn" id="7_n6ni2"]
+[ext_resource type="PackedScene" uid="uid://eosn3f5t4ujm" path="res://hmi.tscn" id="8_24bd4"]
+[ext_resource type="PackedScene" uid="uid://ktn53vxvpi31" path="res://brain.tscn" id="9_nd4u6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekdmr"]
-texture = ExtResource("1_dh4mk")
+texture = ExtResource("2_2a45s")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -265,7 +266,7 @@ texture = ExtResource("1_dh4mk")
 7:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cmbm"]
-texture = ExtResource("2_sbemy")
+texture = ExtResource("3_6rogy")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -285,8 +286,14 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ekdmr")
 sources/1 = SubResource("TileSetAtlasSource_2cmbm")
 
+[sub_resource type="Curve2D" id="Curve2D_ju612"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 427, 79, 0, 0, 0, 0, 273, 79, 0, 0, 0, 0, 444, 80, 0, 0, 0, 0, 427, 79)
+}
+point_count = 4
+
 [node name="Level 1" type="Node2D"]
-script = ExtResource("1_gvxiq")
+script = ExtResource("1_83br0")
 next_scene = "level_2.tscn"
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -300,34 +307,48 @@ layer_1/tile_data = PackedInt32Array(131074, 65537, 0, 131075, 65537, 0, 131076,
 
 [node name="Mobs" type="Node2D" parent="."]
 
-[node name="Slime" parent="Mobs" instance=ExtResource("4_how7p")]
+[node name="Slime" parent="Mobs" instance=ExtResource("4_btuom")]
 position = Vector2(145, 53)
 
-[node name="Slime2" parent="Mobs" instance=ExtResource("4_how7p")]
+[node name="Slime2" parent="Mobs" instance=ExtResource("4_btuom")]
 position = Vector2(114, 95)
 
-[node name="Slime3" parent="Mobs" instance=ExtResource("4_how7p")]
+[node name="Slime3" parent="Mobs" instance=ExtResource("4_btuom")]
 position = Vector2(232, 58)
+
+[node name="Path2D" type="Path2D" parent="Mobs"]
+curve = SubResource("Curve2D_ju612")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Mobs/Path2D"]
+position = Vector2(427, 79)
+rotation = 3.14159
+rotates = false
+
+[node name="Skel1" parent="Mobs/Path2D/PathFollow2D" node_paths=PackedStringArray("path") instance=ExtResource("5_8c8jk")]
+position = Vector2(0, 7.54979e-07)
+rotation = 3.14159
+speed = 10
+path = NodePath("..")
 
 [node name="Pentacles" type="Node" parent="."]
 
-[node name="Area2D" parent="Pentacles" instance=ExtResource("4_2qfdu")]
-position = Vector2(287, 79)
+[node name="Area2D" parent="Pentacles" instance=ExtResource("6_cr2n2")]
+position = Vector2(253, 79)
 
-[node name="Area2D3" parent="Pentacles" instance=ExtResource("4_2qfdu")]
+[node name="Area2D3" parent="Pentacles" instance=ExtResource("6_cr2n2")]
 position = Vector2(57, 71)
 
-[node name="Player" parent="." instance=ExtResource("3_8pp0y")]
+[node name="Player" parent="." instance=ExtResource("7_n6ni2")]
 z_index = 10
 position = Vector2(57, 71)
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="HMI" parent="." instance=ExtResource("6_xad1x")]
+[node name="HMI" parent="." instance=ExtResource("8_24bd4")]
 visible = false
 z_index = 100
 
-[node name="Brain" parent="." instance=ExtResource("8_k1thk")]
+[node name="Brain" parent="." instance=ExtResource("9_nd4u6")]
 position = Vector2(402, 124)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
