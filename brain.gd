@@ -12,5 +12,5 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print("Gagné")
-	get_parent().level_ok()
+	if body.has_method("whoami") and body.whoami() == "player":
+		get_parent().level_ok()

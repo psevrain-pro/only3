@@ -9,13 +9,14 @@ var flashRect: ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	initFlashRect()
 	for cpt in range (3,0, -1):
 		$HMI/Message.text = str(cpt)
 		await get_tree().create_timer(0.7).timeout
 	$Player.mode = "PLAY"
 	$HMI/Message.text = ""
 	mode = "PLAY"
-	initFlashRect()
+	
 	AudioManager.play("res://sounds/start.mp3")
 	ring_bell()
 	$Timer.start()

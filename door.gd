@@ -12,14 +12,15 @@ func _on_timer_timeout():
 		close_door()
 	else:
 		open_door()
-	opened = !opened
 	
 func open_door():
 	$DoorSprite.rotation_degrees=-90
 	$CollisionShapeOpened.disabled = false
 	$CollisionShapeClosed.disabled = true
+	opened = true
 
 func close_door():
 	$DoorSprite.rotation_degrees=0
 	$CollisionShapeOpened.disabled = true
 	$CollisionShapeClosed.disabled = false
+	opened = false
