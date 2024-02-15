@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var speed = 70.0
 var mode = "WAIT"
-var push_force = 20
 
 func _physics_process(delta):
 	if mode == "PLAY":
@@ -10,6 +9,8 @@ func _physics_process(delta):
 		velocity = direction * speed
 		if velocity.x < 0:
 			$AnimatedSprite2D.flip_h = true
+		elif velocity.x > 0:
+			$AnimatedSprite2D.flip_h = false
 		move_and_slide()
 
 func whoami():
@@ -18,5 +19,3 @@ func whoami():
 func die():
 	mode = "DIE"
 	$AnimatedSprite2D.play("die")
-	#await get_tree().create_timer(0.7).timeout
-	#queue_free()

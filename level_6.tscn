@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqdagftm7ne2l"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_g7wok"]
+[ext_resource type="TileSet" uid="uid://dh7ngddh2dagc" path="res://tileset.tres" id="2_u5vm8"]
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="3_xnfhg"]
+[ext_resource type="PackedScene" path="res://skeleton.tscn" id="4_p65sc"]
+[ext_resource type="PackedScene" uid="uid://b0wxw8gtwk738" path="res://skull.tscn" id="5_f8218"]
+[ext_resource type="PackedScene" uid="uid://c1hihlokpx00l" path="res://pentacle.tscn" id="6_w4804"]
+[ext_resource type="PackedScene" uid="uid://c453rdvuravjd" path="res://player.tscn" id="7_mp1nt"]
+[ext_resource type="PackedScene" uid="uid://eosn3f5t4ujm" path="res://hmi.tscn" id="8_wsrrk"]
+[ext_resource type="PackedScene" uid="uid://bnqvej06dimxr" path="res://brain.tscn" id="9_8fx72"]
+
+[sub_resource type="Curve2D" id="Curve2D_b1lsv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 427, 79, 0, 0, 0, 0, 427, 23, 0, 0, 0, 0, 427, 79)
+}
+point_count = 3
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_g7wok")
+title = "Skulls traffic jam"
+next_scene = "level_7.tscn"
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(54, 79)
+tile_set = ExtResource("2_u5vm8")
+format = 2
+layer_0/name = "walls"
+layer_0/z_index = 1
+layer_0/tile_data = PackedInt32Array(131073, 0, 2, 196609, 0, 2, 262145, 0, 1, 327681, 0, 1, 393217, 0, 3, 131089, 196608, 0, 393233, 0, 5, 393234, 196608, 4, 131090, 262144, 0, 393235, 196608, 4, 131092, 65536, 0, 393236, 196608, 4, 131093, 327680, 1, 196629, 327680, 1, 262165, 327680, 1, 327701, 327680, 2, 393237, 327680, 4, 131091, 131072, 0, 458753, 0, 4, 458769, 327680, 4, 458754, 262144, 4, 458755, 262144, 4, 458756, 262144, 4, 458757, 196608, 4, 458758, 131072, 4, 458759, 196608, 4, 458760, 262144, 4, 458761, 196608, 4, 458763, 196608, 4, 458764, 196608, 4, 458765, 196608, 4, 458766, 65536, 4, 458767, 65536, 4, 458768, 196608, 4, 65537, 0, 3, 65553, 327680, 3, 65538, 196608, 0, 65539, 131072, 0, 65540, 65536, 0, 65541, 196608, 0, 65542, 196608, 0, 65543, 65536, 0, 65544, 196608, 0, 65545, 65536, 0, 65546, 262144, 0, 65547, 262144, 0, 65548, 65536, 0, 65549, 196608, 0, 65550, 65536, 0, 65551, 65536, 0, 65552, 262144, 0, 458762, 196608, 4)
+layer_1/name = "floor"
+layer_1/tile_data = PackedInt32Array(131074, 589824, 0, 131075, 458752, 2, 131076, 524288, 0, 131077, 458752, 0, 131078, 524288, 0, 131079, 458752, 1, 131080, 458752, 2, 131081, 393216, 0, 131082, 458752, 0, 131083, 458752, 1, 131084, 458752, 1, 131085, 458752, 1, 131086, 524288, 2, 196611, 393216, 0, 196612, 458752, 0, 196613, 393216, 1, 262149, 458752, 1, 262148, 458752, 0, 327686, 458752, 2, 327687, 393216, 2, 327688, 458752, 1, 327689, 524288, 1, 393225, 524288, 2, 393226, 589824, 1, 196614, 458752, 1, 262151, 458752, 2, 262152, 393216, 2, 262153, 589824, 2, 327690, 524288, 1, 327691, 458752, 0, 393228, 589824, 1, 393229, 524288, 1, 393230, 393216, 2, 262150, 458752, 1, 393232, 524288, 2, 327696, 393216, 2, 262160, 524288, 0, 196624, 524288, 2, 131088, 589824, 1, 131087, 393216, 1, 196610, 393216, 1, 262146, 393216, 1, 327682, 458752, 0, 393218, 524288, 2, 393219, 458752, 0, 393220, 458752, 1, 393221, 393216, 0, 393222, 524288, 0, 393223, 393216, 2, 393224, 393216, 1, 393227, 458752, 2, 327694, 393216, 2, 327695, 458752, 1, 262159, 524288, 1, 196623, 458752, 1, 393231, 589824, 1, 262158, 458752, 1, 196622, 589824, 1, 196621, 589824, 0, 196620, 589824, 1, 196619, 393216, 2, 196618, 458752, 2, 196617, 458752, 0, 196616, 524288, 2, 196615, 524288, 1, 262147, 458752, 0, 327683, 524288, 2, 327684, 524288, 1, 327685, 458752, 0, 327692, 589824, 2, 327693, 458752, 1, 262157, 589824, 1, 262156, 589824, 1, 262155, 589824, 0, 262154, 524288, 1, 196628, 458752, 1, 196627, 393216, 2, 196626, 458752, 1, 196625, 589824, 0, 262161, 393216, 1, 327697, 458752, 2, 262162, 589824, 2, 327698, 589824, 2, 262163, 524288, 2, 327699, 589824, 1, 262164, 458752, 2, 327700, 458752, 2)
+layer_2/name = "decors"
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array()
+
+[node name="Mobs" type="Node2D" parent="."]
+position = Vector2(57, 78)
+
+[node name="Path2D" type="Path2D" parent="Mobs"]
+position = Vector2(-198, 21)
+curve = SubResource("Curve2D_b1lsv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Mobs/Path2D"]
+position = Vector2(427, 79)
+rotation = 3.14159
+rotates = false
+script = ExtResource("3_xnfhg")
+speed = 0.2
+
+[node name="Skel1" parent="Mobs/Path2D/PathFollow2D" instance=ExtResource("4_p65sc")]
+position = Vector2(-1.14441e-05, 5)
+rotation = 3.14159
+script = null
+
+[node name="Path2D2" type="Path2D" parent="Mobs"]
+position = Vector2(-230, 19)
+curve = SubResource("Curve2D_b1lsv")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Mobs/Path2D2"]
+position = Vector2(427, 46.7625)
+rotation = 3.14159
+progress = 32.2336
+rotates = false
+script = ExtResource("3_xnfhg")
+speed = 0.2
+
+[node name="Skel1" parent="Mobs/Path2D2/PathFollow2D2" instance=ExtResource("4_p65sc")]
+position = Vector2(0, 7.54979e-07)
+rotation = 3.14159
+script = null
+
+[node name="Path2D3" type="Path2D" parent="Mobs"]
+position = Vector2(-264, 19)
+curve = SubResource("Curve2D_b1lsv")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Mobs/Path2D3"]
+position = Vector2(427, 28.9757)
+rotation = 3.14159
+progress = 62.048
+rotates = false
+script = ExtResource("3_xnfhg")
+speed = 0.2
+
+[node name="Skel1" parent="Mobs/Path2D3/PathFollow2D2" instance=ExtResource("4_p65sc")]
+position = Vector2(0, 7.54979e-07)
+rotation = 3.14159
+script = null
+
+[node name="Skull2" parent="Mobs" instance=ExtResource("5_f8218")]
+position = Vector2(282, 73)
+
+[node name="Pentacles" type="Node" parent="."]
+
+[node name="Area2D2" parent="Pentacles" instance=ExtResource("6_w4804")]
+position = Vector2(339, 151)
+
+[node name="Area2D3" parent="Pentacles" instance=ExtResource("6_w4804")]
+position = Vector2(118, 157)
+
+[node name="Player" parent="." instance=ExtResource("7_mp1nt")]
+z_index = 10
+position = Vector2(117, 159)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="HMI" parent="." instance=ExtResource("8_wsrrk")]
+visible = false
+z_index = 100
+
+[node name="Brain" parent="." instance=ExtResource("9_8fx72")]
+position = Vector2(379, 152)
+scale = Vector2(1, 1)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

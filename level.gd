@@ -2,24 +2,22 @@ extends Node2D
 var tick = 0
 var safe = true
 var mode = "START"
-
-@export var next_scene: String =""
-
 var flashRect: ColorRect
+
+@export var title: String =""
+@export var next_scene: String =""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initFlashRect()
 	$HMI.show()
+	$HMI.display_title(title)
 	for cpt in range (3,0, -1):
 		$HMI/Message.text = str(cpt)
 		await get_tree().create_timer(0.7).timeout
 	$Player.mode = "PLAY"
 	$HMI/Message.text = ""
 	mode = "PLAY"
-	
-	AudioManager.play("res://sounds/start.mp3")
-
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,7 +27,6 @@ func _process(delta):
 			safe = true
 	if mode=="PLAY" and $Timer.is_stopped() and safe==false:
 		tick = 0
-		$HMI/Tick.text = "?"
 		ring_bell()
 		$Timer.start()
 
@@ -59,8 +56,8 @@ func level_ok():
 
 func pentacle_reached():
 	flash(Color.LIME_GREEN)
+	AudioManager.play("res://sounds/magic-1s.mp3")
 	$Timer.stop()
-	$HMI/Tick.text = "---"
 
 func game_over():
 	mode = "WAIT"
@@ -75,7 +72,6 @@ func game_over():
 
 func _on_timer_timeout():
 	tick += 1
-	$HMI/Tick.text = str(tick)
 	if tick > 2:
 		fire()
 		tick = 0
