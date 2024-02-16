@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://eosn3f5t4ujm"]
+[gd_scene load_steps=7 format=3 uid="uid://eosn3f5t4ujm"]
 
 [ext_resource type="Theme" uid="uid://d16pfv2sredv" path="res://theme_texte.tres" id="1_kmj5e"]
 [ext_resource type="Script" path="res://hmi.gd" id="1_shv8t"]
+[ext_resource type="Texture2D" uid="uid://85m2txwnyuu0" path="res://sprites/transition.png" id="3_ogabe"]
+
+[sub_resource type="Animation" id="Animation_kqmtb"]
+resource_name = "arrive"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(800, 0), Vector2(-300, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w7uq2"]
+resource_name = "part"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(-2000, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sniwt"]
+_data = {
+"arrive": SubResource("Animation_kqmtb"),
+"part": SubResource("Animation_w7uq2")
+}
 
 [node name="HMI" type="Node2D"]
 script = ExtResource("1_shv8t")
@@ -32,6 +71,17 @@ scale = Vector2(3.40267, 5.50198)
 theme = ExtResource("1_kmj5e")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-text = "Coucou"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Transition" type="TextureRect" parent="."]
+offset_left = -311.0
+offset_top = -44.0
+offset_right = 1116.0
+offset_bottom = 684.0
+texture = ExtResource("3_ogabe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_sniwt")
+}

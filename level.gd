@@ -12,9 +12,11 @@ func _ready():
 	initFlashRect()
 	$HMI.show()
 	$HMI.display_title(title)
+	await get_tree().create_timer(0.3).timeout
+	$HMI.hello()
 	for cpt in range (3,0, -1):
 		$HMI/Message.text = str(cpt)
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.5).timeout
 	$Player.mode = "PLAY"
 	$HMI/Message.text = ""
 	mode = "PLAY"
@@ -47,11 +49,13 @@ func level_ok():
 	mode = "WAIT"
 	$Timer.stop()
 	AudioManager.play("res://sounds/fin_level.wav")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	if len(next_scene) == 0:
 		$HMI/Message.text = "You Win !!!"
 	else :
-		flash(Color.WHITE)
+		$HMI.good_by()
+		#flash(Color.WHITE)
+		await get_tree().create_timer(0.3).timeout
 		get_tree().change_scene_to_file(next_scene)
 
 func pentacle_reached():
@@ -66,7 +70,7 @@ func game_over():
 	await get_tree().create_timer(0.7).timeout
 	AudioManager.play("res://sounds/die.mp3")
 	AudioManager.play("res://sounds/orgue_mort.wav")
-	$HMI/Message.text = "Game Over"
+	$HMI/Message.text = "4th bell !!!"
 	await get_tree().create_timer(3).timeout
 	get_tree().reload_current_scene()
 

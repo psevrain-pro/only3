@@ -88,7 +88,7 @@ rotation = 3.14159
 script = null
 
 [node name="Skull2" parent="Mobs" instance=ExtResource("5_f8218")]
-position = Vector2(282, 73)
+position = Vector2(129, 78)
 
 [node name="Pentacles" type="Node" parent="."]
 

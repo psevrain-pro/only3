@@ -15,5 +15,10 @@ func _process(delta):
 func display_title(title):
 	$Title.text = title
 
+func hello():
+	$Transition/AnimationPlayer.play("part")
+func good_by():
+	$Transition/AnimationPlayer.play("arrive")
+
 func on_score_change(cb):
 	$Score.text = str(Gm.score)

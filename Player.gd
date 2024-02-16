@@ -17,5 +17,8 @@ func whoami():
 	return "player"
 
 func die():
+	$Flash.visible = true
 	mode = "DIE"
 	$AnimatedSprite2D.play("die")
+	await get_tree().create_timer(0.3).timeout
+	$Flash.visible = false
